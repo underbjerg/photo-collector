@@ -63,4 +63,8 @@ gem 'magnific-popup-rails', '~> 0.9.9'
 
 gem 'rails_12factor', group: :production
 
+
 ruby "2.1.2"
+
+# unicorn webserver recommended for heroku
+gem 'unicorn'
