@@ -57,7 +57,8 @@ gem "mini_magick", '~> 3.7.0'
 
 # -- EXIF
 # Mini exif tool. 
-gem 'mini_exiftool', '~> 2.4.2'
+#gem 'mini_exiftool', '~> 2.4.2'
+gem 'mini_exiftool_vendored'
 
 gem 'magnific-popup-rails', '~> 0.9.9'
 

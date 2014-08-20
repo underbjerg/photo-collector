@@ -81,6 +81,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     mini_exiftool (2.4.2)
+    mini_exiftool_vendored (9.2.7.v1)
+      mini_exiftool (>= 1.6.0)
     mini_magick (3.7.0)
       subexec (~> 0.2.1)
     minitest (5.4.0)
@@ -171,7 +173,7 @@ DEPENDENCIES
   jquery-ui-rails
   jquery-ui-themes
   magnific-popup-rails (~> 0.9.9)
-  mini_exiftool (~> 2.4.2)
+  mini_exiftool_vendored
   mini_magick (~> 3.7.0)
   pg
   rails (= 4.1.4)
