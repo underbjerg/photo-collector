@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PhotoCollector</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  
+  <%= csrf_meta_tags %>
+  
+  <!-- Bootstrap responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	
+	<div class="container-fluid">
+		
+
+<ul class="nav nav-pills">
+  <li class="">
+				<%= link_to "Forside", albums_path %>
+  </li>
+</ul>
+
+<ol class="breadcrumb">
+  <li><%= link_to "Albums", albums_path %></li>
+  <%= yield :breadcrumb %>
+</ol>
+
+			<%= yield %>
+	</div>
+	
+<%= yield :javascript %>
+
+</body>
+</html>

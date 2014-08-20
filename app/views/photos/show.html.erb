@@ -1,0 +1,46 @@
+<%= content_for :breadcrumb do %>
+	<li><%= link_to @photo.album.title, @photo.album %></li>
+	<li class="active"><%= link_to @photo.title, [@photo.album, @photo] %></li>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<%= image_tag( @photo.file.single.url ) %>
+
+<%= link_to 'Edit', edit_album_photo_path(@photo.album, @photo) %>
+
+<h3>
+  <%= @photo.title %>
+</h3>
+
+
+<p>
+  <strong>Description:</strong>
+  <%= @photo.description %>
+</p>
+
+<p>
+  <strong>Album:</strong>
+  <%= @photo.album_id %>
+</p>
+
+<p>
+  <strong>Capture time:</strong>
+  <%= @photo.capture_time %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @photo.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @photo.latitude %>
+</p>
+
+<p>
+  <strong>Dimensions:</strong>
+  W: <%= @photo.width %>, H: <%= @photo.height %>
+</p>
+

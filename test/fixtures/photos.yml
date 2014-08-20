@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  album_id: 1
+  capture_time: 2014-08-18 14:54:48
+  longitude: 1.5
+  latitude: 1.5
+
+two:
+  title: MyString
+  description: MyText
+  album_id: 1
+  capture_time: 2014-08-18 14:54:48
+  longitude: 1.5
+  latitude: 1.5

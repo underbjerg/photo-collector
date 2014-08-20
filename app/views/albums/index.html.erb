@@ -1,0 +1,54 @@
+
+
+<div class="row">
+  <div class="col-md-9">
+	  
+  </div>
+  <div class="col-md-3">
+	  
+	<span class="dropdown">
+	  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+	    <span class="glyphicon glyphicon-upload"></span> Tilføj billeder
+	    <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		<% @albums.each do |album| %>
+			<li role="presentation">
+				<%= link_to album_upload_path(album), :class => "" do %>
+					<%= album.title %>
+				<% end %> 
+			</li>		
+		<% end %>
+	  </ul>
+	</span>	  
+	  
+
+  	
+	<%= link_to new_album_path, :class => "btn btn-default"  do %>
+		<span class="glyphicon glyphicon-plus"></span> Nyt album
+	<% end %>
+	
+	
+	
+  </div>
+</div>
+
+
+
+<div>
+    <% @albums.each do |album| %>
+		<div class="media ">
+				<% unless album.photos.empty? -%>
+					<%= link_to( image_tag( album.photos.first.file.thumb_square.url ), album, :class => "pull-left") %>
+				<% else -%>
+					<%= link_to( image_tag("placeholder_small.jpg"), album, :class => "pull-left") %>
+				<% end -%>
+				<div class="media-body">
+					<h4 class="media-heading"><%= link_to album.title, album %></h4>
+					<%= album.description %>
+				</div>
+		</div>
+		
+		
+    <% end %>
+</div>

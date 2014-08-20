@@ -1,0 +1,62 @@
+<%= content_for :breadcrumb do %>
+	<li class="active"><%= link_to @album.title, @album %></li>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+
+<div class="row">
+  <div class="col-md-9">
+	<h2><%= @album.title %></h2>
+	<p>
+	  <%= @album.description %>
+	</p>
+  	
+  </div>
+  <div class="col-md-3">
+  	
+	<%= link_to album_upload_path(@album), :class => "btn btn-success" do %>
+		<span class="glyphicon glyphicon-upload"></span> Tilføj billeder
+	<% end %> 
+
+	<%= link_to 'Edit', edit_album_path(@album), :class => "btn btn-default" %>
+	
+  </div>
+</div>
+
+
+
+<br/>
+
+
+<div id="photo-container">
+	<% for photo in Photo.where(:album_id => @album.id).order("capture_time asc") do  %>
+		<div class="photo-elem">
+			<span class="spacer-helper"></span>
+			<%= link_to image_tag( photo.file.thumb.url ), [photo.album,photo], "data-mfp-src" => photo.file.single.url, :title => photo.title, "data-capture-time" => ( photo.capture_time.strftime("%b %d %Y, %H:%M") unless photo.capture_time.blank? ) %>
+		</div>
+	<% end %>
+</div>
+
+<% content_for :javascript do %>
+<script type="text/javascript">
+
+function initializeLightbox() {
+	//console.log("initializing magnific");
+	$('#photo-container').magnificPopup({
+	  delegate: 'a', // child items selector, by clicking on it popup will open
+	  type: 'image',
+	  // other options
+	  gallery: {enabled:true},
+	  image: {
+		  titleSrc: function(item) {
+		  	return item.el.attr('title') + '<small>' + item.el.attr('data-capture-time') + '</small>';
+		  }
+	  }
+	});
+}
+
+$(document).ready(initializeLightbox);
+$(document).on("page:load", initializeLightbox);
+</script>
+<% end %>
