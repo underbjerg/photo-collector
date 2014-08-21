@@ -49,7 +49,7 @@ gem 'spring',        group: :development
 gem 'carrierwave', '~> 0.10.0'
 
 # Fog for S3 storage
-gem "fog", "~> 1.3.1"
+gem "fog", "~> 1.22.0"
 
 # -- Photo resizing
 # MiniMagick

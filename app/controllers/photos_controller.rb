@@ -25,11 +25,11 @@ class PhotosController < ApplicationController
   # POST /photos.json
   def create
     @photo = Photo.new(photo_params)
-    @photo.file = params[:file]
+    @photo.image_file = params[:file]
 
     respond_to do |format|
       if @photo.save
-        format.html { render :text => "FILEID:" + @photo.file.thumb.url }
+        format.html { render :text => "FILEID:" + @photo.image_file.thumb.url }
         format.xml  { render :nothing => true }
       else
         format.html { render :text => "ERRORS:" + @photo.errors.full_messages.join(" "), :status => 500 }

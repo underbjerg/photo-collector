@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
   belongs_to :album
   
-  mount_uploader :file, FileUploader
+  mount_uploader :image_file, FileUploader
 
   before_validation :set_title
   before_create :exif_read
@@ -9,12 +9,12 @@ class Photo < ActiveRecord::Base
   private
   
   def set_title
-    self.title = self.file.file.basename.titleize unless self.title
+    self.title = self.image_file.file.basename.titleize unless self.title
   end
   
 
   def exif_read
-    path = self.file.file.file
+    path = self.image_file.file.file
     puts "Loading MiniExiftool for " + path
     photo = MiniExiftool.new(path)
     puts "Description: " + photo.ImageDescription.to_s

@@ -33,7 +33,7 @@
 	<% for photo in Photo.where(:album_id => @album.id).order("capture_time asc") do  %>
 		<div class="photo-elem">
 			<span class="spacer-helper"></span>
-			<%= link_to image_tag( photo.file.thumb.url ), [photo.album,photo], "data-mfp-src" => photo.file.single.url, :title => photo.title, "data-capture-time" => ( photo.capture_time.strftime("%b %d %Y, %H:%M") unless photo.capture_time.blank? ) %>
+			<%= link_to image_tag( photo.image_file.thumb.url ), [photo.album,photo], "data-mfp-src" => photo.image_file.single.url, :title => photo.title, "data-capture-time" => ( photo.capture_time.strftime("%b %d %Y, %H:%M") unless photo.capture_time.blank? ) %>
 		</div>
 	<% end %>
 </div>
