@@ -25,7 +25,7 @@ class AlbumsController < ApplicationController
     @album = Album.find( params[:album_id])
     @photo = Photo.new(:album_id => @album.id)
     @uploader = @photo.image_file
-    @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/files/#{@album.path}/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
+    @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/tmp/#{@album.path}/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
   end  
   
   # POST /albums

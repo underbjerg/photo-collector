@@ -22,11 +22,11 @@ class FileUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  #def store_dir
+  def store_dir
   #  #"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   #  #ENV['STORAGE_PATH']
-  #  "uploads" + "/files/#{model.album.path}/#{model.id}"
-  #end
+    "uploads/files/#{model.album.path}"
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
@@ -47,26 +47,23 @@ class FileUploader < CarrierWave::Uploader::Base
   version :single do
     process :resize_to_limit => [1280, 1024]
     process :quality => 75
-    #def store_dir
-    #  #ENV['STORAGE_PATH']
-    #  "uploads" + "/thumbs/#{model.album.path}/#{model.id}"
-    #end
+    def store_dir
+      "uploads/thumbs/#{model.album.path}/"
+    end
   end
   version :thumb, :from_version => :single do
     process :resize_to_fit => [240, 240]
     process :quality => 75
-    #def store_dir
-    #  #ENV['STORAGE_PATH']
-    #  "uploads" + "/thumbs/#{model.album.path}/#{model.id}"
-    #end
+    def store_dir
+      "uploads/thumbs/#{model.album.path}/"
+    end
   end
   version :thumb_square, :from_version => :single do
     process :resize_to_fill => [240, 240]
     process :quality => 75
-    #def store_dir
-    #  #ENV['STORAGE_PATH']
-    #  "uploads" + "/thumbs/#{model.album.path}/#{model.id}"
-    #end
+    def store_dir
+      "uploads/thumbs/#{model.album.path}/"
+    end
   end
   
   def auto_orient
