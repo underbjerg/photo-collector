@@ -87,9 +87,6 @@ GEM
       railties (>= 3.2.16)
     jquery-ui-themes (0.0.11)
       httparty
-    jquery.fileupload-rails (1.10.0)
-      jquery-ui-rails (~> 5.0)
-      railties (>= 3.1)
     json (1.8.1)
     kgio (2.9.2)
     magnific-popup-rails (0.9.9)
@@ -207,11 +204,10 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   fog (~> 1.22.0)
   jbuilder (~> 2.0)
-  jquery-rails
+  jquery-rails (~> 3.1.1)
   jquery-turbolinks
-  jquery-ui-rails
-  jquery-ui-themes
-  jquery.fileupload-rails
+  jquery-ui-rails (~> 5.0.0)
+  jquery-ui-themes (~> 0.0.11)
   magnific-popup-rails (~> 0.9.9)
   mini_exiftool_vendored
   mini_magick (~> 3.7.0)

@@ -12,9 +12,34 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require plupload/js/plupload.full.min.js
-//= require plupload/js/jquery.plupload.queue/jquery.plupload.queue.min.js
-//= require jquery.fileupload
+//= require jquery-ui/widget
+
+// old plupload components
+// require plupload/js/plupload.full.min.js
+// require plupload/js/jquery.plupload.queue/jquery.plupload.queue.min.js
+
+// The Templates plugin is included to render the upload/download listings -->
+//= require javascript-templates/js/tmpl.min.js
+// The Load Image plugin is included for the preview images and image resizing functionality -->
+//= require javascript-load-image/js/load-image.min.js
+
+// The Iframe Transport is required for browsers without support for XHR file uploads -->
+//= require jquery-file-upload/js/jquery.iframe-transport.js
+// The basic File Upload plugin -->
+//= require jquery-file-upload/js/jquery.fileupload.js
+// The File Upload processing plugin -->
+//= require jquery-file-upload/js/jquery.fileupload-process.js
+// The File Upload image preview & resize plugin -->
+//= require jquery-file-upload/js/jquery.fileupload-image.js
+// The File Upload audio preview plugin -->
+//= require jquery-file-upload/js/jquery.fileupload-audio.js
+// The File Upload video preview plugin -->
+//= require jquery-file-upload/js/jquery.fileupload-video.js
+// The File Upload validation plugin -->
+//= require jquery-file-upload/js/jquery.fileupload-validate.js
+// The File Upload user interface plugin -->
+//= require jquery-file-upload/js/jquery.fileupload-ui.js
+
+
 //= require magnific-popup
-//= require_tree .
 

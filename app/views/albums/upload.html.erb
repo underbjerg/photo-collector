@@ -1,98 +1,180 @@
 <%= content_for :breadcrumb do %>
 	<li><%= link_to @album.title, @album %></li>
-	<li class="active">Upload</li>
+	<li class="active">Upload2</li>
 <% end %>
 
-<form>
-	<div id="uploader">
-        <p>You browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.</p>
-    </div>
 
-	<p id="upload-complete-text" style="display:none;">Upload er færdig! <%= link_to "Tilbage til album", @album %></p>
-
-	<br>
-	<div id="thumbs"></div>
-</form>
-
+    <!-- The file upload form used as target for the file upload widget -->
+	<%= form_for([@album, @photo], html: { id: "fileupload" } ) do |f| %>
+		<input id="content_type" type="hidden" name="Content-Type" />
+		<input id="key" type="hidden" name="key" />
+		<%= f.hidden_field :album_id, :value => @album.id %>
+        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+        <div class="row fileupload-buttonbar">
+            <div class="col-lg-7">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="files[]" multiple>
+                </span>
+                <button type="submit" class="btn btn-primary start">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start upload</span>
+                </button>
+                <button type="reset" class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel upload</span>
+                </button>
+                <!-- The global file processing state -->
+                <span class="fileupload-process"></span>
+            </div>
+            <!-- The global progress state -->
+            <div class="col-lg-5 fileupload-progress fade">
+                <!-- The global progress bar -->
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                </div>
+                <!-- The extended global progress state -->
+                <div class="progress-extended">&nbsp;</div>
+            </div>
+        </div>
+        <!-- The table listing the files available for upload/download -->
+        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+<% end %>
 
 
 
 <script type="text/javascript">
-$(document).ready(function() {
-	
-	$("#uploader").pluploadQueue({
-			// General settings
-			runtimes : 'html5,flash,html4',
-			url : '<%= album_photos_path(@album) %>',
-			max_file_size : '10mb',
-			multipart: true,  
-			   multipart_params: {  
-				//'< %= get_session_key %>' : encodeURIComponent('< %= cookies[get_session_key] %>'),
-				'authenticity_token' : '<%= form_authenticity_token %>',
-				'photo[album_id]' : "<%= @album.id %>"
-			   },
+	$(document).ready(function() {
+		var authenticityToken = $("input[name='authenticity_token']").val();
+		$(function() {
+			$('#fileupload').fileupload({
+		      url:             '<%= @s3_direct_post.url %>',
+		      type:            'POST',
+		      autoUpload:       false,
+		      formData:         <%= @s3_direct_post.fields.to_json.html_safe %>,
+		      paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
+		      dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
+		      replaceFileInput: false,
+              // Callback to retrieve the list of files from the server response:
+              getFilesFromResponse: function (data) {
+				  var key   = $(data.jqXHR.responseXML).find("Key").text();
+  		          var url   = 'https://<%= @s3_direct_post.url.host %>/' + key;
+				  if(key) {
+					  // Post to our own server, to create a photo record, and start the image processing
+					  var createUrl = '<%= album_photos_path(@album) %>';
+					  
+					  var successfull = false;
+					  var jqxhr = $.ajax({
+						  	type: 'POST',
+						  	url: createUrl, 
+							async: false,
+							data: {
+								authenticity_token: authenticityToken,
+								key: key,
+								photo: { album_id: '<%= @album.id %>' }
+							}
+						})
+					    .done(function() {
+							successfull = true;
+					    })
+					    .fail(function() { })
+					    .always(function() { });
+					  					  
+					  if(successfull) {
+						  // Return a map with the information returned from S3, to display
+					 	 return [{"key":key, "url":url}];
+				  	  }
+				  }
+                  return [];
+              },
+			  stop: function (e) {
+  				// Call the "prototype" stop() method from jquery file upload
+  				$.blueimp.fileupload.prototype.options.stop.call(this, e);
+				  
+				// all done
+			  },
+		      done: function(e, data) {
+		        // extract key and generate URL from response
+		        var key   = $(data.jqXHR.responseXML).find("Key").text();
+		        var url   = 'https://<%= @s3_direct_post.url.host %>/' + key;
 
-			// Resize images on clientside if we can
-			//resize : {width : 320, height : 240, quality : 90},
-
-			// Specify what files to browse for
-			filters : [
-				{title : "Image files", extensions : "jpg,gif,png,bmp,jpeg,tif,tiff"}
-			],
-			
-			// Views to activate
-			        views: {
-			            list: true,
-			            thumbs: true, // Show thumbs
-			            active: 'thumbs'
-			        },
-
-			// Flash settings
-			flash_swf_url : '/javascripts/plupload/js/plupload.flash.swf',
-			
-			// Post init events, bound after the internal events
-				init : {
-
-					FileUploaded: function(up, file, info) {
-						// Called when a file has finished uploading
-						res = info.response;
-						if (res.substring(0, 7) === "FILEID:") {
-							var image = $('<img>').appendTo('#thumbs')
-							image.css('display','none')
-							image.attr('src', res.substring(7) )
-							image.fadeIn('slow')
-						}
-					},
-					
-					UploadComplete: function(up, file, info) {
-						$("#upload-complete-text").show();
-						window.location.href = "<%= album_path(@album) %>";
-					}
-				}
+				
+				
+				// Call the "prototype" done() method from jquery file upload
+				$.blueimp.fileupload.prototype.options.done.call(this, e, data);
+		      }
+		    });
+		  });
 		});
-
-		// Client side form validation
-		$('form').submit(function(e) {
-			var uploader = $('#uploader').pluploadQueue();
-
-			// Validate number of uploaded files
-			if (uploader.total.uploaded == 0) {
-				// Files in queue upload them first
-				if (uploader.files.length > 0) {
-					// When all files are uploaded submit form
-					uploader.bind('UploadProgress', function() {
-						if (uploader.total.uploaded == uploader.files.length)
-							$('form').submit();
-					});
-
-					uploader.start();
-				} else
-					alert('You must at least upload one file.');
-
-				e.preventDefault();
-			}
-		});
-		
-})
 </script>
 
+
+
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td>
+            <span class="preview"></span>
+        </td>
+        <td>
+            <p class="name">{%=file.name%}</p>
+            <strong class="error text-danger"></strong>
+        </td>
+        <td>
+            <p class="size">Processing...</p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+        </td>
+        <td>
+            {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-primary start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}
+            {% if (!i) { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+		<td>
+                {% if (file.key) { %}
+                    {%=file.key%}
+                {% } %}
+		</td>
+        <td>
+            <span class="preview">
+                {% if (file.thumbnailUrl) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                {% } %}
+            </span>
+        </td>
+        <td>
+            <p class="name">
+                {% if (file.url) { %}
+					<a href="{%=file.url%}">{%=file.url%}</a>
+                {% } else { %}
+                    <span>{%=file.name%}</span>
+                {% } %}
+            </p>
+            {% if (file.error) { %}
+                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+            {% } %}
+        </td>
+        <td>
+            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+    </tr>
+{% } %}
+</script>

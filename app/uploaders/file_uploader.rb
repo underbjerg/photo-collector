@@ -46,6 +46,7 @@ class FileUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
   version :single do
     process :resize_to_limit => [1280, 1024]
+    process :quality => 75
     #def store_dir
     #  #ENV['STORAGE_PATH']
     #  "uploads" + "/thumbs/#{model.album.path}/#{model.id}"
@@ -53,6 +54,7 @@ class FileUploader < CarrierWave::Uploader::Base
   end
   version :thumb, :from_version => :single do
     process :resize_to_fit => [240, 240]
+    process :quality => 75
     #def store_dir
     #  #ENV['STORAGE_PATH']
     #  "uploads" + "/thumbs/#{model.album.path}/#{model.id}"
@@ -60,6 +62,7 @@ class FileUploader < CarrierWave::Uploader::Base
   end
   version :thumb_square, :from_version => :single do
     process :resize_to_fill => [240, 240]
+    process :quality => 75
     #def store_dir
     #  #ENV['STORAGE_PATH']
     #  "uploads" + "/thumbs/#{model.album.path}/#{model.id}"
