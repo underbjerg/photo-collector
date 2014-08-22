@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require plupload/js/plupload.full.min.js
 //= require plupload/js/jquery.plupload.queue/jquery.plupload.queue.min.js
+//= require jquery.fileupload
 //= require magnific-popup
 //= require_tree .
 

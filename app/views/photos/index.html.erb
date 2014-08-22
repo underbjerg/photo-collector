@@ -11,6 +11,7 @@
       <th>Longitude</th>
       <th>Latitude</th>
 	  <th>Dimensions</th>
+	  <th>Created</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
         <td><%= photo.longitude %></td>
         <td><%= photo.latitude %></td>
 		<td><%= photo.width %> x <%= photo.height %></td>
+		<td><%= photo.created_at %></td>
         <td><%= link_to 'Show', [photo.album, photo] %></td>
         <td><%= link_to 'Edit', edit_album_photo_path(photo.album, photo) %></td>
         <td><%= link_to 'Destroy', [photo.album, photo], method: :delete, data: { confirm: 'Are you sure?' } %></td>

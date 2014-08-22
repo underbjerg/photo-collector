@@ -47,9 +47,19 @@ gem 'spring',        group: :development
 
 # Photo uploading
 gem 'carrierwave', '~> 0.10.0'
+gem 'carrierwave_direct'
+
+# use resque for background processing
+gem "resque", "~> 1.25.0.pre", :require => 'resque/server'
+
+# Upload plugin
+gem 'jquery.fileupload-rails'
 
 # Fog for S3 storage
 gem "fog", "~> 1.22.0"
+
+# Ruby gem with interacting with AWS/S3 directly
+gem 'aws-sdk'
 
 # -- Photo resizing
 # MiniMagick

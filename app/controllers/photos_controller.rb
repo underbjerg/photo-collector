@@ -4,7 +4,8 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    @album = Album.find(params[:album_id])
+    @photos = @album.photos.all
   end
 
   # GET /photos/1
@@ -24,16 +25,25 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
   def create
+    @album = Album.find(params[:album_id])
+    puts "Album ID: " + @album.id.to_s
     @photo = Photo.new(photo_params)
-    @photo.image_file = params[:file]
+    
+    if(params[:key]) 
+      @photo.update_attribute :key, params[:key]
+    else
+      @photo.image_file = params[:file]
+    end
 
-    respond_to do |format|
-      if @photo.save
-        format.html { render :text => "FILEID:" + @photo.image_file.thumb.url }
-        format.xml  { render :nothing => true }
+    #respond_to do |format|
+      if @photo.save_and_process_image_file
+        puts "User being created"
+        redirect_to :action => :index
+        #format.html { render :text => "FILEID:" + @photo.image_file.thumb.url }
+        #format.xml  { render :nothing => true }
       else
-        format.html { render :text => "ERRORS:" + @photo.errors.full_messages.join(" "), :status => 500 }
-        format.xml  { render :xml => @photo.errors, :status => 500 }
+        render :text => "ERRORS:" + @photo.errors.full_messages.join(" "), :status => 500 
+        #format.xml  { render :xml => @photo.errors, :status => 500 }
       end
       #if @photo.save
       #  format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
@@ -42,7 +52,7 @@ class PhotosController < ApplicationController
       #  format.html { render :new }
       #  format.json { render json: @photo.errors, status: :unprocessable_entity }
       #end
-    end
+      #end
   end
 
   # PATCH/PUT /photos/1

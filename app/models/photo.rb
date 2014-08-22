@@ -3,27 +3,32 @@ class Photo < ActiveRecord::Base
   
   mount_uploader :image_file, FileUploader
 
-  before_validation :set_title
-  before_create :exif_read
-  
+    def save_and_process_image_file(options = {})
+      if options[:now]
+        #puts "Photo valid?: " + valid?.to_s + "(" + errors.full_messages.join(" ") + ")"
+        #puts "Photo: " + self.inspect
+        #puts "ImageFile (uploader): " + image_file.inspect
+        puts "save_and_process_image_file found fog_url: " + image_file.direct_fog_url(:with_path => true)
+        self.remote_image_file_url = image_file.direct_fog_url(:with_path => true)
+        puts "remote_image_file_url set, saving..."
+        save!
+      else
+        Resque.enqueue(ImageFileProcessor, id, key, attributes)
+      end
+    end
+
   private
   
-  def set_title
-    self.title = self.image_file.file.basename.titleize unless self.title
-  end
-  
+end
 
-  def exif_read
-    path = self.image_file.file.file
-    puts "Loading MiniExiftool for " + path
-    photo = MiniExiftool.new(path)
-    puts "Description: " + photo.ImageDescription.to_s
-    puts "Capture time: " + photo.DateTimeOriginal.to_s
-    self.longitude = photo.GPSLongitude if self.longitude.nil?
-    self.latitude = photo.GPSLatitude if self.latitude.nil?
-    self.title = photo.DocumentName if self.title.nil?
-    self.description = photo.ImageDescription if self.description.nil? && photo.ImageDescription != 'Exif_JPEG_PICTURE'
-    self.capture_time = photo.DateTimeOriginal if self.capture_time.nil?
+class ImageFileProcessor
+  @queue = :image_file_processor_queue
+
+  def self.perform(id, key, attributes)
+    puts "Photo.perform(attributes) called. Attempting to create new photo with attributes: " + attributes.to_s
+    photo = Photo.find(id)
+    photo.key = key
+    photo.album_id = attributes["album_id"]
+    photo.save_and_process_image_file(:now => true)
   end
-  
 end
