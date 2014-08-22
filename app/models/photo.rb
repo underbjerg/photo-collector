@@ -12,6 +12,7 @@ class Photo < ActiveRecord::Base
         self.remote_image_file_url = image_file.direct_fog_url(:with_path => true)
         puts "remote_image_file_url set, saving..."
         save!
+        self.update_column(:image_processed, true)
       else
         Resque.enqueue(ImageFileProcessor, id, key, attributes)
       end

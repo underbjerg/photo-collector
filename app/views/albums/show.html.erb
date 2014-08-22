@@ -32,9 +32,13 @@
 <div id="photo-container">
 	<% for photo in Photo.where(:album_id => @album.id).order("capture_time asc") do  %>
 		<div class="photo-elem">
-			<a href="<%= photo.image_file.file.url %>" download class="btn btn-default btn-xs download" ><span class="glyphicon glyphicon-download"></span></a>
+			<a href="<%= photo.image_file.file.url %>" download class="btn btn-default btn-sm download" title="Download image"><span class="glyphicon glyphicon-download"></span></a>
 			<span class="spacer-helper"></span>
-			<%= link_to image_tag( photo.image_file.thumb.url ), [photo.album,photo], "data-mfp-src" => photo.image_file.single.url, :title => photo.title, :class => "view", "data-capture-time" => ( photo.capture_time.strftime("%b %d %Y, %H:%M") unless photo.capture_time.blank? ) %>
+			<% if photo.image_processed %>
+				<%= link_to image_tag( photo.image_file.thumb.url ), [photo.album,photo], "data-mfp-src" => photo.image_file.single.url, :title => photo.title, :class => "view", "data-capture-time" => ( photo.capture_time.strftime("%b %d %Y, %H:%M") unless photo.capture_time.blank? ) %>
+			<% else %>
+				<%= image_tag("loading.gif") %>
+			<% end %>
 		</div>
 	<% end %>
 </div>

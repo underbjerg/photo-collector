@@ -94,6 +94,7 @@
   				$.blueimp.fileupload.prototype.options.stop.call(this, e);
 				  
 				// all done
+				window.location.href = "<%= album_path(@album) %>";
 			  },
 		      done: function(e, data) {
 		        // extract key and generate URL from response

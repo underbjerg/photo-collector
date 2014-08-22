@@ -1,5 +1,5 @@
 class Album < ActiveRecord::Base
-  has_many :photos
+  has_many :photos, :dependent => :delete_all
   
   validates :path, presence: true, uniqueness: true#, :message => "Path must be unique across all albums"
   
