@@ -14,10 +14,6 @@
 //= require jquery_ujs
 //= require jquery-ui/widget
 
-// old plupload components
-// require plupload/js/plupload.full.min.js
-// require plupload/js/jquery.plupload.queue/jquery.plupload.queue.min.js
-
 // The Templates plugin is included to render the upload/download listings -->
 //= require javascript-templates/js/tmpl.min.js
 // The Load Image plugin is included for the preview images and image resizing functionality -->
