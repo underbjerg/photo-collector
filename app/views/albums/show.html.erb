@@ -34,7 +34,7 @@
 		<div class="photo-elem">
 			<a href="<%= photo.image_file.file.url %>" download class="btn btn-default btn-sm download" title="Download image"><span class="glyphicon glyphicon-download"></span></a>
 			<span class="spacer-helper"></span>
-			<% if photo.image_processed %>
+			<% if photo.image_processed && photo.image_file.thumb && photo.image_file.single %>
 				<%= link_to image_tag( photo.image_file.thumb.url ), [photo.album,photo], "data-mfp-src" => photo.image_file.single.url, :title => photo.title, :class => "view", "data-capture-time" => ( photo.capture_time.strftime("%b %d %Y, %H:%M") unless photo.capture_time.blank? ) %>
 			<% else %>
 				<%= image_tag("loading.gif") %>
