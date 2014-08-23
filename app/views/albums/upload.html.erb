@@ -46,6 +46,8 @@
 
 
 <script type="text/javascript">
+	var lastNum = 0;
+
 	$(document).ready(function() {
 		var authenticityToken = $("input[name='authenticity_token']").val();
 		$(function() {
@@ -53,7 +55,8 @@
 		      url:             '<%= @s3_direct_post.url %>',
 		      type:            'POST',
 		      autoUpload:       false,
-		      formData:         <%= @s3_direct_post.fields.to_json.html_safe %>,
+		      //formData:         <%= @s3_direct_post.fields.to_json.html_safe %>,
+			  formData: 		'', // This will be calculated dynamically in the add() function
 		      paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
 		      dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
 		      replaceFileInput: false,
@@ -89,6 +92,19 @@
 				  }
                   return [];
               },
+              add: function (e, data) {
+				  // When each file is added, calculate a new destination path, so 
+				  // files of the same name (e.g. from iPhone) don't overwrite eachother
+				  lastNum = lastNum + 1;
+			      data.formData = <%= @s3_direct_post.fields.to_json.html_safe %>;
+				  data.formData.key =  "<%= @s3_path %>-" + lastNum + "/${filename}";
+				  
+				  //data.url = '<%= @s3_direct_post.url %>' + lastNum + "/${filename}";
+				  //console.log(data);
+				  
+				  // Then call the original add method
+    			  $.blueimp.fileupload.prototype.options.add.call(this, e, data);
+			  },
 			  stop: function (e) {
   				// Call the "prototype" stop() method from jquery file upload
   				$.blueimp.fileupload.prototype.options.stop.call(this, e);
