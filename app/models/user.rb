@@ -6,7 +6,11 @@ class User < ActiveRecord::Base
         user.name = auth.info.name
         user.email = auth.info.email
         user.oauth_token = auth.credentials.token
-        user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+        if auth.credentials && auth.credentials.expires_at
+          user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+        else
+          user.oauth_expires_at = Time.now + 1.day
+        end
         user.save!
       end
     end

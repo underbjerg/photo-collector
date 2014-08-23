@@ -71,6 +71,7 @@ gem 'rails_12factor', group: :production
 
 gem "omniauth-google-oauth2", "~> 0.2.5"
 gem 'omniauth-facebook', "~> 2.0.0"
+gem 'omniauth-identity', '~> 1.1.1'
 
 
 ruby "2.1.2"
