@@ -1,42 +1,32 @@
 
 <% content_for :header_left do %>
+<!--
 		<li>
 			<%= link_to new_album_path  do %>
 				<span class="glyphicon glyphicon-plus"></span> Nyt album
 			<% end %>
 		</li>
-
+-->
 <% end %>
 
 
-<div class="row">
-  <div class="col-md-9">
-  </div>
-  <div class="col-md-3">
-	  
-  	
-	
-	
-	
-  </div>
-</div>
 
 <br/>
 
-<div>
     <% @albums.each do |album| %>
-		<div class="media ">
+	
+		<div class="album">
+			
 				<% unless album.photos.empty? -%>
-					<%= link_to( image_tag( album.photos.first.image_file.thumb_square.url ), album, :class => "pull-left") %>
+					<%= link_to( image_tag( album.photos.first.image_file.thumb_square.url, :class => "img-responsive img-rounded" ), album) %>
 				<% else -%>
-					<%= link_to( image_tag("placeholder_small.jpg"), album, :class => "pull-left") %>
+					<%= link_to( image_tag("placeholder_small.jpg", :class => "img-responsive img-rounded"), album, :class => "pull-left") %>
 				<% end -%>
-				<div class="media-body">
-					<h4 class="media-heading"><%= link_to album.title, album %></h4>
-					<%= album.description %>
-				</div>
-		</div>
-		
+		  
+		  <div class="details">
+				<h4 class="media-heading"><%= link_to album.title, album %></h4>
+				<p><%= album.description %></p>
+		  </div>
+		</div>	
 		
     <% end %>
-</div>
