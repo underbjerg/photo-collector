@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
+  before_filter :check_public_access
 
   # GET /photos
   # GET /photos.json
@@ -28,6 +29,7 @@ class PhotosController < ApplicationController
     @album = Album.find(params[:album_id])
     puts "Album ID: " + @album.id.to_s
     @photo = Photo.new(photo_params)
+    @photo.user = current_user
     
     if(params[:key]) 
       @photo.update_attribute :key, params[:key]

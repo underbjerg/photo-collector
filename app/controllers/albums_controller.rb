@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_filter :check_public_access
 
   # GET /albums
   # GET /albums.json
@@ -10,6 +11,12 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
+    if params[:user_id]
+      @user_filter = User.find(params[:user_id])
+      @photos = @album.photos.where(:user_id => @user_filter.id)
+    else
+      @photos = @album.photos
+    end
   end
 
   # GET /albums/new

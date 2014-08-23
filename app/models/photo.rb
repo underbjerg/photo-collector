@@ -1,5 +1,6 @@
 class Photo < ActiveRecord::Base
   belongs_to :album
+  belongs_to :user
   
   mount_uploader :image_file, FileUploader
 
@@ -30,6 +31,7 @@ class ImageFileProcessor
     photo = Photo.find(id)
     photo.key = key
     photo.album_id = attributes["album_id"]
+    photo.user_id = attributes["user_id"]
     photo.save_and_process_image_file(:now => true)
   end
 end

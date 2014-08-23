@@ -6,20 +6,45 @@
 
 
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-8">
 	<h2><%= @album.title %></h2>
 	<p>
 	  <%= @album.description %>
 	</p>
   	
   </div>
-  <div class="col-md-3">
+  <div class="col-md-4">
   	
-	<%= link_to album_upload_path(@album), :class => "btn btn-success" do %>
-		<span class="glyphicon glyphicon-upload"></span> Tilføj billeder
-	<% end %> 
-
-	<%= link_to 'Edit', edit_album_path(@album), :class => "btn btn-default" %>
+	<div class="btn-toolbar">
+		<div class="btn-group btn-group-sm">
+		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		    	 <% if @user_filter %>
+				 	Bruger: <%= @user_filter.name %>
+				 <% else %>
+				 	Bruger: Alle
+				 <% end %>
+				<span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+			<% @album.users.each do |user| %>
+				<li><a href="<%= album_path(@album, :user_id => user.id) %>"><%= user.name %></a></li>
+			<% end %>
+		    <li class="divider"></li>
+		    <li><a href="<%= album_path(@album) %>">Vis alle</a></li>
+		  </ul>
+		</div>	
+		
+		<div class="btn-group btn-group-sm">
+			<%= link_to album_upload_path(@album), :class => "btn btn-success" do %>
+				<span class="glyphicon glyphicon-upload"></span> Tilføj billeder
+			<% end %> 
+		</div>
+		
+		<div class="btn-group btn-group-sm">
+			<%= link_to 'Edit', edit_album_path(@album), :class => "btn btn-default" %>
+		</div>
+		
+	</div>
 	
   </div>
 </div>
@@ -30,14 +55,14 @@
 
 
 <div id="photo-container">
-	<% for photo in Photo.where(:album_id => @album.id).order("capture_time asc") do  %>
+	<% for photo in @photos do  %>
 		<div class="photo-elem">
 			<% if photo.image_processed && photo.image_file.thumb && photo.image_file.single %>
 				<a href="<%= photo.image_file.file.url %>" download class="btn btn-default btn-sm download" title="Download image"><span class="glyphicon glyphicon-download"></span></a>
 			<% end %>
 			<span class="spacer-helper"></span>
 			<% if photo.image_processed && photo.image_file.thumb && photo.image_file.single %>
-				<%= link_to image_tag( photo.image_file.thumb.url ), [photo.album,photo], "data-mfp-src" => photo.image_file.single.url, :title => photo.title, :class => "view", "data-capture-time" => ( photo.capture_time.strftime("%b %d %Y, %H:%M") unless photo.capture_time.blank? ) %>
+				<%= link_to image_tag( photo.image_file.thumb.url ), [photo.album,photo], "data-mfp-src" => photo.image_file.single.url, :title => photo.title, :class => "view", "data-capture-time" => ( photo.capture_time.strftime("%b %d %Y, %H:%M") unless photo.capture_time.blank? ), "data-user" => (photo.user ? photo.user.name : "") %>
 			<% else %>
 				<%= image_tag("loading.gif") %>
 			<% end %>
@@ -57,7 +82,7 @@ function initializeLightbox() {
 	  gallery: {enabled:true},
 	  image: {
 		  titleSrc: function(item) {
-		  	return item.el.attr('title') + '<small>' + item.el.attr('data-capture-time') + '</small>';
+		  	return (item.el.attr('data-user') ? item.el.attr('data-user') : 'Ukendt bruger') + ": " + item.el.attr('title') + '<small>' + item.el.attr('data-capture-time') + '</small>';
 		  }
 	  }
 	});
