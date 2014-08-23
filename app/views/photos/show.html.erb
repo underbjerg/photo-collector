@@ -5,7 +5,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<%= image_tag( @photo.file.single.url ) %>
+<%= image_tag( @photo.image_file.single.url ) %>
 
 <%= link_to 'Edit', edit_album_photo_path(@photo.album, @photo) %>
 

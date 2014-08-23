@@ -19,7 +19,7 @@
   <tbody>
     <% @photos.each do |photo| %>
       <tr>
-		<td><%= link_to image_tag( photo.image_file.thumb.url ), [photo.album, photo] %></td>
+		<td><%= link_to image_tag( photo.image_file.thumb_square.url ), [photo.album, photo] %></td>
         <td><%= photo.title %></td>
         <td><%= photo.description %></td>
         <td><%= photo.album_id %></td>
