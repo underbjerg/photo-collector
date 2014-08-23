@@ -36,7 +36,7 @@
 // The File Upload user interface plugin -->
 //= require jquery-file-upload/js/jquery.fileupload-ui.js
 
-//= require facebook
+//  require facebook
 
 //= require magnific-popup
 

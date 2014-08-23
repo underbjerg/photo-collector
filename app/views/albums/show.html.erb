@@ -60,7 +60,7 @@
 			<% if photo.image_processed && photo.image_file.thumb && photo.image_file.single %>
 				<%= link_to image_tag( photo.image_file.thumb_square.url, :class => "img-responsive img-rounded" ), [photo.album,photo], "data-mfp-src" => photo.image_file.single.url, :title => photo.title, :class => "view", "data-capture-time" => ( photo.capture_time.strftime("%b %d %Y, %H:%M") unless photo.capture_time.blank? ), "data-user" => (photo.user ? photo.user.name : ""), "data-fullsize" => photo.image_file.file.url %>
 			<% else %>
-				<%= image_tag("loading.gif") %>
+				<%= image_tag("loading.gif", :class => "img-responsive img-rounded") %>
 			<% end %>
 		</div>
 	<% end %>
