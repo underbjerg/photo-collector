@@ -2,7 +2,15 @@ class SessionsController < ApplicationController
   before_filter :require_user, :only => :destroy
   
   def new
-
+    if params[:code]
+      @code = params[:code]
+      if @code == "bryllup"
+        @authorized = true
+      else
+        @message = "Forkert kode!"
+      end
+      
+    end
   end
   
   def create

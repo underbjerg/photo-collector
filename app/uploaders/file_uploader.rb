@@ -25,7 +25,7 @@ class FileUploader < CarrierWave::Uploader::Base
   def store_dir
   #  #"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   #  #ENV['STORAGE_PATH']
-    "uploads/files/#{model.album.path}"
+    "uploads/files/#{model.album.path}/#{model.user.email.parameterize}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -48,21 +48,21 @@ class FileUploader < CarrierWave::Uploader::Base
     process :resize_to_limit => [1280, 1024]
     process :quality => 75
     def store_dir
-      "uploads/thumbs/#{model.album.path}/"
+      "uploads/thumbs/#{model.album.path}/#{model.user.email.parameterize}"
     end
   end
   version :thumb, :from_version => :single do
     process :resize_to_fit => [240, 240]
     process :quality => 75
     def store_dir
-      "uploads/thumbs/#{model.album.path}/"
+      "uploads/thumbs/#{model.album.path}/#{model.user.email.parameterize}"
     end
   end
   version :thumb_square, :from_version => :single do
     process :resize_to_fill => [240, 240]
     process :quality => 75
     def store_dir
-      "uploads/thumbs/#{model.album.path}/"
+      "uploads/thumbs/#{model.album.path}/#{model.user.email.parameterize}"
     end
   end
   
