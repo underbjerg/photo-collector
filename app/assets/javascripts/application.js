@@ -28,9 +28,9 @@
 // The File Upload image preview & resize plugin -->
 //= require jquery-file-upload/js/jquery.fileupload-image.js
 // The File Upload audio preview plugin -->
-//= require jquery-file-upload/js/jquery.fileupload-audio.js
+// require jquery-file-upload/js/jquery.fileupload-audio.js
 // The File Upload video preview plugin -->
-//= require jquery-file-upload/js/jquery.fileupload-video.js
+// require jquery-file-upload/js/jquery.fileupload-video.js
 // The File Upload validation plugin -->
 //= require jquery-file-upload/js/jquery.fileupload-validate.js
 // The File Upload user interface plugin -->
