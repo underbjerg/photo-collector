@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui/widget
 
-//= require bootstrap/js/bootstrap.min.js
+//= require bootstrap.min
 
 // The Templates plugin is included to render the upload/download listings -->
 //= require javascript-templates/js/tmpl.min.js
