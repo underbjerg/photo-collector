@@ -35,14 +35,34 @@
 .photo-elem {
 	max-width: 140px;
 }
+
+.album img {
+	max-width: 140px;
+}
+.album .details {
+	max-width: 140px;
+}
+
 @media (min-width: 500px) {
 	.photo-elem {
 		max-width: 100%;
+	}
+	.album img {
+		max-width: 100%;
+	}
+	.album .details {
+		max-width: 240px;
 	}
 }
 @media (min-width: 800px) {
 	.photo-elem {
 		max-width: 100%;
+	}
+	.album img {
+		max-width: 100%;
+	}
+	.album .details {
+		max-width: 240px;
 	}
 }
 
@@ -63,17 +83,17 @@
 }
 
 .album {
+	display: inline-block;
 	vertical-align: top;
+	margin-right: 10px;
 }
 .album .image {
 	display: inline-block;
-	margin-right: 10px;
 }
 .album .details {
-	display: inline-block;
+	display: block;
 	vertical-align: top;
 }
-
 
 /* Upload stuff */
 .progress {
