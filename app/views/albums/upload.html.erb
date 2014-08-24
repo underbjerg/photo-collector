@@ -60,7 +60,7 @@
 		      paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
 		      dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
 		      replaceFileInput: false,
-			  limitConcurrentUploads: 1,
+			  limitConcurrentUploads: 2,
               // Callback to retrieve the list of files from the server response:
               getFilesFromResponse: function (data) {
 				  var key   = $(data.jqXHR.responseXML).find("Key").text();
@@ -167,9 +167,11 @@
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-download fade">
 		<td>
+			<!--
                 {% if (file.key) { %}
                     {%=file.key%}
                 {% } %}
+			-->
 		</td>
         <td>
             <span class="preview">
@@ -179,6 +181,7 @@
             </span>
         </td>
         <td>
+			<!--
             <p class="name">
                 {% if (file.url) { %}
 					<a href="{%=file.url%}">{%=file.url%}</a>
@@ -186,6 +189,7 @@
                     <span>{%=file.name%}</span>
                 {% } %}
             </p>
+			-->
             {% if (file.error) { %}
                 <div><span class="label label-danger">Error</span> {%=file.error%}</div>
             {% } %}
