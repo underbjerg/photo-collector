@@ -41,7 +41,7 @@
 						  <% end %>
 					  </a>
 			          <ul class="dropdown-menu" role="menu">
-						  <% Album.all.each do |album| %>
+						  <% Album.all.order("sequence DESC").each do |album| %>
 							<li><%= link_to album.title, album %></li>
 						  <% end %>
 			          </ul>
