@@ -50,7 +50,7 @@ gem 'carrierwave_direct'
 # use resque for background processing
 gem "resque", "~> 1.25.0.pre", :require => 'resque/server'
 # user hirefire to auto-scale workers (https://github.com/meskyanichi/hirefire)
-gem 'hirefire', "~> 0.1.4"
+gem "hirefire-resource", '~> 0.3.4'
 
 # Fog for S3 storage
 gem "fog", "~> 1.22.0"
