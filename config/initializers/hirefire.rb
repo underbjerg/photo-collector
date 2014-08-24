@@ -1,3 +1,5 @@
+if Rails.env.production?
+
 HireFire.configure do |config|
   config.environment      = :heroku # default in production is :heroku. default in development is :noop
   config.max_workers      = 5   # default is 1
@@ -9,4 +11,6 @@ HireFire.configure do |config|
       { :jobs => 60,  :workers => 4 },
       { :jobs => 80,  :workers => 5 }
     ]
+end
+
 end

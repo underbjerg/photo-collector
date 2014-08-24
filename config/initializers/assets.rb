@@ -13,3 +13,7 @@
 #Rails.application.config.assets.precompile += %w( plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css )
 #Rails.application.config.assets.precompile += %w( masonry.pkgd.min.js )
 #Rails.application.config.assets.precompile += %w( imagesloaded.pkgd.min.js )
+
+
+Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
+Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
