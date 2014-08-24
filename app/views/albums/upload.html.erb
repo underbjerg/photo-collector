@@ -39,6 +39,9 @@
                 <div class="progress-extended">&nbsp;</div>
             </div>
         </div>
+		
+		<p>Hav venligst tålmodighed når du uploader mange filer ad gangen, og naviger ikke væk fra siden før uploaden er færdig.</p>
+		
         <!-- The table listing the files available for upload/download -->
         <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 <% end %>
@@ -152,12 +155,14 @@
                     <span>Start</span>
                 </button>
             {% } %}
+			<!--
             {% if (!i) { %}
                 <button class="btn btn-warning cancel">
                     <i class="glyphicon glyphicon-ban-circle"></i>
                     <span>Cancel</span>
                 </button>
             {% } %}
+			-->
         </td>
     </tr>
 {% } %}
