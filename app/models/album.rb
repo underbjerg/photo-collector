@@ -8,6 +8,10 @@ class Album < ActiveRecord::Base
   before_validation :ensure_path
   
   
+  def self.all_ordered
+    Album.all.order("sequence DESC")
+  end
+  
   def ensure_path
     self.path = self.title.parameterize unless self.path
   end

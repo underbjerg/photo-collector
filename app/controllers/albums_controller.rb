@@ -5,7 +5,7 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.all.order("sequence DESC")
+    @albums = Album.all_ordered
   end
 
   # GET /albums/1
