@@ -13,7 +13,7 @@
  *= require jquery-ui/core
  *= require jquery-ui/progressbar
  *= require ../javascripts/jquery-file-upload/css/jquery.fileupload.css
- *= require_tree .
+ *= require ../javascripts/bootstrap/css/bootstrap.min.css
  *= require magnific-popup
  *= require_self
  */

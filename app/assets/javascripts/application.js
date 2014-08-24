@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require jquery-ui/widget
 
+//= require bootstrap/js/bootstrap.min.js
+
 // The Templates plugin is included to render the upload/download listings -->
 //= require javascript-templates/js/tmpl.min.js
 // The Load Image plugin is included for the preview images and image resizing functionality -->
