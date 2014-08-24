@@ -12,4 +12,8 @@ class Album < ActiveRecord::Base
     self.path = self.title.parameterize unless self.path
   end
   
+  def cover_photo
+    photos_unordered.order("use_as_cover DESC, capture_time ASC").first
+  end
+  
 end
