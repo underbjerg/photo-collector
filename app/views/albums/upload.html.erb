@@ -60,7 +60,7 @@
 		      paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
 		      dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
 		      replaceFileInput: false,
-			  limitConcurrentUploads: 2,
+			  limitConcurrentUploads: 1,
               // Callback to retrieve the list of files from the server response:
               getFilesFromResponse: function (data) {
 				  var key   = $(data.jqXHR.responseXML).find("Key").text();
