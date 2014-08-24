@@ -1,7 +1,6 @@
 
-<% if @authorized %>
+<h3>Login</h3>
 
-	<h3>Login (trin 2 af 2)</h3>
 <p>
 	Log ind for at se og uploade billeder fra brylluppet. Hvis du har en Facebook eller Google konto kan du logge ind med den, og ellers kan du oprette dig nedenfor.
 </p>
@@ -31,19 +30,3 @@
 <% end %>
 
 
-<% else %>
-	<h3>Gæstekode (trin 1 af 2)</h3>
-			<% if @message %>
-			<div class="alert alert-danger" role="alert"><%= @message %></div>
-			<% end %>
-			<form role="form">
-				 <div class="form-group <%= 'has-error' if @message %>">
-				    <label class="control-label" for="code">Kode</label>
-				    <input type="password" class="form-control" id="code" name="code" placeholder="">
-    				<p class="help-block">Indtast den kode du har fået af Erik og Ebba for at komme videre</p>
-				 </div>		
-
-				  <button type="submit" class="btn btn-default btn-success">Videre</button>
-			</form>
-	
-<% end %>

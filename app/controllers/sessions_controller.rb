@@ -1,15 +1,22 @@
 class SessionsController < ApplicationController
-  before_filter :require_user, :only => :destroy
+  #before_filter :require_user, :only => [:destroy]
+  
+  @@passcode = "bobler"
   
   def new
-    if params[:code]
-      @code = params[:code]
-      if @code == "bryllup"
-        @authorized = true
+    
+  end
+  
+  def enter_code
+    @code = params[:code]
+    puts "Code / passcode: " + @code.to_s + "/" + @@passcode.to_s
+    if @code
+      if @code == @@passcode
+        current_user.update_attribute(:knows_code, true)
+        redirect_to root_path
       else
         @message = "Forkert kode!"
       end
-      
     end
   end
   
