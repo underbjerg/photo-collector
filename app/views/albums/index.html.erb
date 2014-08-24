@@ -20,7 +20,7 @@
 				<% unless album.photos.empty? -%>
 					<%= link_to( image_tag( album.cover_photo.image_file.thumb_square.url, :class => "img-responsive img-rounded" ), album) %>
 				<% else -%>
-					<%= link_to( image_tag("placeholder_small.jpg", :class => "img-responsive img-rounded", :style => "width:240px"), album, :class => "pull-left") %>
+					<%= link_to( image_tag("placeholder_small.jpg", :class => "img-responsive img-rounded", :style => "width:240px; height:240px;"), album, :class => "pull-left") %>
 				<% end -%>
 		  </div>
 		  <div class="details">
