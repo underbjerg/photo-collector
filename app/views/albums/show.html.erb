@@ -18,8 +18,9 @@
 	<div class="btn-toolbar">
 		<div class="btn-group btn-group-sm">
 		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-		    	 <% if @user_filter %>
-				 	Vis: fra <%= @user_filter.name %>
+		    	 <span class="glyphicon glyphicon-eye-open"></span>
+				 <% if @user_filter %>
+				 	Fra: <%= @user_filter.name %>
 				 <% else %>
 				 	Vis: Alle
 				 <% end %>
@@ -58,7 +59,7 @@
 	<% for photo in @photos do  %>
 		<div class="photo-elem">
 			<% if photo.image_processed && photo.image_file.thumb_square && photo.image_file.single %>
-				<%= link_to image_tag( photo.image_file.thumb_square.url, :class => "img-responsive img-rounded" ), [photo.album,photo], "data-mfp-src" => photo.image_file.single.url, :title => photo.title, :class => "view", "data-capture-time" => ( photo.capture_time.blank? ? '' : photo.capture_time.strftime("%b %d %Y, %H:%M")  ), "data-user" => (photo.user ? photo.user.name : ""), "data-fullsize" => photo.image_file.file.url %>
+				<%= link_to image_tag( photo.image_file.thumb_square.url, :class => "img-responsive" ), [photo.album,photo], "data-mfp-src" => photo.image_file.single.url, :title => photo.title, :class => "view", "data-capture-time" => ( photo.capture_time.blank? ? '' : photo.capture_time.strftime("%b %d %Y, %H:%M")  ), "data-user" => (photo.user ? photo.user.name : ""), "data-fullsize" => photo.image_file.file.url %>
 			<% else %>
 				<%= link_to image_tag("processing.jpg", :class => "img-responsive img-rounded"), @album %>
 			<% end %>

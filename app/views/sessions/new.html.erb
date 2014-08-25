@@ -20,7 +20,7 @@
 <%= form_tag "/auth/identity/callback" do %>
   <div class="form-group">
     <%= label_tag :auth_key, "Email", class: "control-label" %><br>
-    <%= text_field_tag :auth_key, nil, class: "form-control" %>
+    <%= email_field_tag :auth_key, nil, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= label_tag :password, nil, class: "control-label" %><br>

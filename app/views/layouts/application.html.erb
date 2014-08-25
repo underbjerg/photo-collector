@@ -24,7 +24,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="/">E&E</a>
+		      <a class="navbar-brand" href="/"><%= image_tag "e-e-logo-40px.png" %></a>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -34,6 +34,7 @@
 				<% if signed_in? %>
 			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						  <span class="glyphicon glyphicon-picture"></span>
 						  <% if @album %>
 						  	Album: <%= @album.title %> <span class="caret"></span>
 						  <% else %>
@@ -73,7 +74,8 @@
 		      <ul class="nav navbar-nav navbar-right">
 				<% if current_user %>
 			        <li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %> <span class="caret"></span></a>
+					  
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <%= current_user.name %> <span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">
 			            <li><%= link_to "Log ud", signout_path, id: "sign_out" %></li>
 			          </ul>
