@@ -9,7 +9,11 @@
 -->
 <% end %>
 
-<div class="alert alert-info" role="alert"><strong>Hej <%= current_user.name.split[0] %>!</strong> Vi håber du også vil uploade <i>dine</i> bedste billeder!</div>
+<div class="panel panel-default" >
+	<div class="panel-body">
+		<strong>Hej <%= current_user.name.split[0] %>!</strong> Vi håber du også vil uploade <i>dine</i> bedste billeder!
+	</div>
+</div>
 
 
     <% @albums.each do |album| %>
@@ -26,7 +30,6 @@
 		  <div class="details">
 				<h4 class="media-heading"><%= album.title %></h4>
 				<p class="description-long" style=""><%= truncate album.description, :length => 120, :seperator => ' ' %></p>
-				<p class="description-short" style=""><%= truncate album.description, :length => 60, :seperator => ' ' %></p>
 		  </div>
 			  <% end %>
 		</div>	

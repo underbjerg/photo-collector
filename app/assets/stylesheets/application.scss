@@ -60,10 +60,10 @@
 	top: 0;
 	text-align: center;
 	color: white;
-	padding-top: 10%;
+	padding-top: 40%;
 	padding-left: 5%;
 	padding-right: 5%;
-	background-color: rgba(0,0,0,0.3);
+	background-color: rgba(0,0,0,0.2);
 	font-weight: 200;
 }
 
@@ -71,9 +71,11 @@
 	color: white;
 	font-weight: 200;
 }
+/*
 .album .details .description-short {
 	display: block;
 }
+*/
 .album .details .description-long {
 	display: none;
 }
@@ -91,9 +93,11 @@
 	.album .details {
 		padding-top:30%;
 	}
+	/*
 	.album .details .description-short {
 		display: none;
 	}
+	*/
 	.album .details .description-long {
 		display: block;
 	}
@@ -114,9 +118,11 @@
 	.album .details {
 		padding-top:30%;
 	}
+	/*
 	.album .details .description-short {
 		display: none;
 	}
+	*/
 	.album .details .description-long {
 		display: block;
 	}
