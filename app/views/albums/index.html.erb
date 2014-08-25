@@ -9,9 +9,8 @@
 -->
 <% end %>
 
-<p class="lead">Hvis I selv har taget nogle gode billeder, vil vi blive rigtigt glade hvis I uploadede dem!</p>
+<div class="alert alert-info" role="alert"><strong>Hej <%= current_user.name.split[0] %>!</strong> Vi håber du også vil uploade <i>dine</i> bedste billeder!</div>
 
-<br/>
 
     <% @albums.each do |album| %>
 	
@@ -23,10 +22,13 @@
 					<%= link_to( image_tag("placeholder_small.jpg", :class => "img-responsive ", :style => "width:240px; height:240px;"), album, :class => "pull-left") %>
 				<% end -%>
 		  </div>
+			  <%= link_to(album) do %>
 		  <div class="details">
-				<h3 class="media-heading"><%= link_to album.title, album %></h3>
-				<p class="lead"><%= album.description %></p>
+				<h4 class="media-heading"><%= album.title %></h4>
+				<p class="description-long" style=""><%= truncate album.description, :length => 120, :seperator => ' ' %></p>
+				<p class="description-short" style=""><%= truncate album.description, :length => 60, :seperator => ' ' %></p>
 		  </div>
+			  <% end %>
 		</div>	
 		
     <% end %>
