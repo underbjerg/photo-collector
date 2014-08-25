@@ -42,3 +42,4 @@
 
 //= require magnific-popup
 
+//= require lightbox

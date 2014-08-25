@@ -1,0 +1,21 @@
+<h1>Nyeste billeder</h1>
+
+
+<div id="photo-container">
+	<% for segment in @feed do  %>
+	
+		<h4><%= segment[:date].to_s if segment[:date] %>: <%= segment[:user].name if segment[:user] %> tilføjede <%= segment[:photos].size %> billeder til <%= link_to segment[:album].title, segment[:album] if segment[:album] %></h4>
+	
+		<% for photo in segment[:photos] do %>
+			<%= render partial: "photos/photo", object: photo %>
+		<% end %>
+		
+	<% end %>
+</div>
+
+<% content_for :javascript do %>
+<script type="text/javascript">
+	$(document).ready(initializeLightbox);
+	$(document).on("page:load", initializeLightbox);
+</script>
+<% end %>

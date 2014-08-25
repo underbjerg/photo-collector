@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'news/latest', as: 'latest'
+
   get 'auth/:provider/callback', to: 'sessions#create'
   post '/auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
