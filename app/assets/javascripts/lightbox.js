@@ -13,11 +13,11 @@ function initializeLightbox() {
 	  image: {
 		  verticalFit: true,
 		  titleSrc: function(item) {
-		  	return  " <a href='" + item.el.attr('data-fullsize') + "' download class='' title='Download image'>DOWNLOAD</a> &middot; "
-					+ " " + item.el.attr('title')
+		  	return  " <a href='" + item.el.attr('data-fullsize') + "' download class='' title='Download image'>DOWNLOAD</a>  "
+					//+ " &middot; " + item.el.attr('title')
 					+'<small>' 
 						+ item.el.attr('data-capture-time') 					
-						+ " (" + (item.el.attr('data-user') ? item.el.attr('data-user') : 'Ukendt bruger') + ")" 					+ '</small>';
+						+ " (by " + (item.el.attr('data-user') ? item.el.attr('data-user') : 'Ukendt bruger') + ")" 					+ '</small>';
 		  }
 	  }
 	});
