@@ -1,0 +1,47 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+sv:	
+  login: "Logga in"
+  logout: "Logga ut"
+  login_explanation: "Logga in för att se och ladda upp bilder från brölloppet. Om du har Facebook eller Google-konto kan du logga in med dem, annars kan du skapa ett användarnamn."
+  login_with_google: "Logga in med Google"
+  login_with_facebook: "Logga in med Facebook"
+  login_dont_have_fb_or_g: "Har du inte Facebook eller Google login?"
+  create_account: "Skapa ett konto"
+  or_login_below: "eller logga in nedanför"
+  login_failed: "Log in misslyckades"
+  login_guest_code: "Gästkod"
+  login_first_time_code: "Första gången du loggar in ska du skriva gästkoden som du har fått för att få tillgång till sidan"
+  login_guest_code_enter: "Skriv in koden som du har fått av Erik och Ebba för att komma vidare."
+  continue: "Fortsätt"
+  hi: "Hej"
+  we_hope_you_will_upload: "Vi hoppas att du vill ladda upp dina bilder!"
+  invalid_code: "Fel kod!"
+  upload_photos: "Ladda upp bilder"
+  newest_photos: "Nyaste"
+  show: "Visa"
+  from: "Från"
+  all: "alla"
+  upload_explanation: "Var tålmodig när du laddar upp många bilder åt gången och gå inte bort från sidan innan uppladdningen är färdig. När uppladdningen är färdig kan det gå några minuter innan alla bilder kan ses."
+  add_files: "Lägg till filar"
+  start_upload: "Starta uppladdning"
+  cancel_upload: "Avbryt uppladdning"
+  

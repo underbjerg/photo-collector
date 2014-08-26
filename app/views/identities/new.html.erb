@@ -1,4 +1,4 @@
-<h1><%= t "Opret konto" %></h1>
+<h1><%= t :create_account %></h1>
 
 <%= form_tag "/auth/identity/register" do %>
   <% if @identity && @identity.errors.any? %>
