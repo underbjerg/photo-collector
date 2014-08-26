@@ -4,7 +4,12 @@ class SessionsController < ApplicationController
   @@passcode = "bobler"
   
   def new
-    
+  end
+  
+  def failure
+    flash[:alert] = "Login fejlede"
+    #puts "alert before redirect: " + flash[:alert].to_s
+    redirect_to login_path
   end
   
   def enter_code

@@ -4,6 +4,12 @@
 <p>
 	Log ind for at se og uploade billeder fra brylluppet. Hvis du har en Facebook eller Google konto kan du logge ind med den, og ellers kan du oprette dig nedenfor.
 </p>
+
+<% if flash[:alert] %>
+<div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
+<% end %>
+
+
 <p>
         <%= link_to image_tag("google_apps_64.png", size: "64x64", alt: "Google") + " Log ind med Google", "/auth/google_oauth2" %>
 <p>		
@@ -16,6 +22,7 @@
   <strong>Har du ikke Facebook eller Google login?</strong>
   <%= link_to "Opret en konto", new_identity_path %> eller log ind nedenfor.
 </p>
+
 
 <%= form_tag "/auth/identity/callback" do %>
   <div class="form-group">

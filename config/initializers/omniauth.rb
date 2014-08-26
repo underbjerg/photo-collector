@@ -7,3 +7,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       IdentitiesController.action(:new).call(env)
     }
 end
+
+# Redirect on auth failure, instead of showing an exception, to show a proper error message in case of
+# authentication failure with omniauth identity
+OmniAuth.config.on_failure = Proc.new { |env|
+  SessionsController.action(:failure).call(env)
+}
