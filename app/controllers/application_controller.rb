@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :signed_in?
 
+  before_action :set_locale
+ 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
@@ -30,5 +32,15 @@ class ApplicationController < ActionController::Base
       return false
     end
   end
+  
+  private
+  def set_locale
+    if params[:locale] #locale override?
+      I18n.locale = params[:locale]
+    else
+      I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
+    end
+  end 
+  
   
 end

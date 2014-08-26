@@ -77,6 +77,7 @@ GEM
     hashie (3.2.0)
     hike (1.2.3)
     hirefire-resource (0.3.4)
+    http_accept_language (2.0.2)
     httparty (0.13.1)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -235,6 +236,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   fog (~> 1.22.0)
   hirefire-resource (~> 0.3.4)
+  http_accept_language (~> 2.0.2)
   jbuilder (~> 2.0)
   jquery-rails (~> 3.1.1)
   jquery-turbolinks

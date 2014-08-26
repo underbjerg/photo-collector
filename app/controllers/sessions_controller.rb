@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   end
   
   def failure
-    flash[:alert] = "Login fejlede"
+    flash[:alert] = translate(:login_failed)
     #puts "alert before redirect: " + flash[:alert].to_s
     redirect_to login_path
   end
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
         current_user.update_attribute(:knows_code, true)
         redirect_to root_path
       else
-        @message = "Forkert kode!"
+        @message = translate(:invalid_code)
       end
     end
   end

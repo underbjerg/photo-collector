@@ -1,0 +1,47 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+da:	
+  login: "Log ind"
+  logout: "Log ud"
+  login_explanation: "Log ind for at se og uploade billeder fra brylluppet. Hvis du har en Facebook eller Google konto kan du logge ind med den, og ellers kan du oprette dig nedenfor."
+  login_with_google: "Log ind med Google"
+  login_with_facebook: "Log ind med Facebook"
+  login_dont_have_fb_or_g: "Har du ikke Facebook eller Google login?"
+  create_account: "Opret en konto"
+  or_login_below: "eller log ind nedenfor"
+  login_failed: "Log ind mislykkedes"
+  login_guest_code: "Gæstekode"
+  login_first_time_code: "Første gang du logger på skal du indtaste den gæstekode du har fået for at få adgang"
+  login_guest_code_enter: "Indtast den kode du har fået af Erik og Ebba for at komme videre"
+  continue: "Fortsæt"
+  hi: "Hej"
+  we_hope_you_will_upload: "Vi håber du vil uploade dine bedste billeder!"
+  invalid_code: "Forkert kode!"
+  upload_photos: "Upload billeder"
+  newest_photos: "Nyeste"
+  show: "Vis"
+  from: "Fra"
+  all: "all"
+  upload_explanation: "Hav venligst tålmodighed når du uploader mange filer ad gangen, og naviger ikke væk fra siden før uploaden er færdig. Når uploaden er færdig, kan der gå et par minutter før alle billederne kan ses."
+  add_files: "Tilføj filer"
+  start_upload: "Start upload"
+  cancel_upload: "Afbryd upload"
+  

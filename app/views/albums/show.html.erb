@@ -20,9 +20,9 @@
 		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 		    	 <span class="glyphicon glyphicon-eye-open"></span>
 				 <% if @user_filter %>
-				 	Fra: <%= @user_filter.name %>
+				 	<%=t :from %>: <%= @user_filter.name %>
 				 <% else %>
-				 	Vis: Alle
+				 	<%=t :show %>: <%=t :all %>
 				 <% end %>
 				<span class="caret"></span>
 		  </button>
@@ -31,13 +31,13 @@
 				<li><a href="<%= album_path(@album, :user_id => user.id) %>"><%= user.name %></a></li>
 			<% end %>
 		    <li class="divider"></li>
-		    <li><a href="<%= album_path(@album) %>">Vis alle</a></li>
+		    <li><a href="<%= album_path(@album) %>"><%=t :show %> <%=t :all %></a></li>
 		  </ul>
 		</div>	
 		
 		<div class="btn-group btn-group-sm">
 			<%= link_to album_upload_path(@album), :class => "btn btn-success" do %>
-				<span class="glyphicon glyphicon-upload"></span> Upload billeder
+				<span class="glyphicon glyphicon-upload"></span> <%=t :upload_photos %>
 			<% end %> 
 		</div>
 		<!--

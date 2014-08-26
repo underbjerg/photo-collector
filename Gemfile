@@ -81,3 +81,5 @@ ruby "2.1.2"
 # unicorn webserver recommended for heroku
 gem 'unicorn'
 
+# for detecting browser language
+gem 'http_accept_language', '~> 2.0.2'

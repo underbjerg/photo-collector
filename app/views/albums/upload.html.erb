@@ -1,9 +1,9 @@
 <%= content_for :breadcrumb do %>
 	<li><%= link_to @album.title, @album %></li>
-	<li class="active">Upload2</li>
+	<li class="active">Upload</li>
 <% end %>
 
-		<p class="lead">Hav venligst tålmodighed når du uploader mange filer ad gangen, og naviger ikke væk fra siden før uploaden er færdig. Når uploaden er færdig, kan der gå et par minutter før alle billederne kan ses.</p>
+		<p class="lead"><%=t :upload_explanation %></p>
 
     <!-- The file upload form used as target for the file upload widget -->
 	<%= form_for([@album, @photo], html: { id: "fileupload" } ) do |f| %>
@@ -16,16 +16,16 @@
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
                     <i class="glyphicon glyphicon-plus"></i>
-                    <span>Tilføj filer...</span>
+                    <span><%=t :add_files %>...</span>
                     <input type="file" name="files[]" multiple>
                 </span>
                 <button type="submit" class="btn btn-primary start">
                     <i class="glyphicon glyphicon-upload"></i>
-                    <span>Start upload</span>
+                    <span><%=t :start_upload %></span>
                 </button>
                 <button type="reset" class="btn btn-warning cancel">
                     <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Afbryd upload</span>
+                    <span><%=t :cancel_upload %></span>
                 </button>
                 <!-- The global file processing state -->
                 <span class="fileupload-process"></span>
@@ -41,7 +41,7 @@
             </div>
         </div>
 		
-		<div id="please-wait" class="alert alert-info" role="alert" style="display:none;">Vent et øjeblik...</div>
+		<div id="please-wait" class="alert alert-info" role="alert" style="display:none;"><%=t :please_wait %>...</div>
 		
         <!-- The table listing the files available for upload/download -->
         <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
