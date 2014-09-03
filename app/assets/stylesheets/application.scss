@@ -38,6 +38,10 @@
 }
 .album img {
 	max-height: 140px;
+	
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	filter: grayscale(100%);
 }
 
 .album .image {
@@ -63,7 +67,7 @@
 	padding-top: 40%;
 	padding-left: 5%;
 	padding-right: 5%;
-	background-color: rgba(0,0,0,0.2);
+	background-color: rgba(0,0,0,0.4);
 	font-weight: 200;
 }
 

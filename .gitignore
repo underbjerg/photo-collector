@@ -21,3 +21,13 @@
 /public/uploads/
 
 config/heroku_env.rb
+
+pg_upgrade_internal.log
+
+pg_upgrade_server.log
+
+pg_upgrade_utility.log
+
+dump.rdb
+
+dump.rdb
