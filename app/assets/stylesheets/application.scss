@@ -108,8 +108,6 @@ body {
 	.album {
 		max-width: 240px;
 		max-height: 240px;
-		margin-right: 2px;
-		margin-bottom: 5px;
 	}
 	.album img {
 		max-height: 100%;
@@ -117,14 +115,14 @@ body {
 }
 /* Medium desktops and up */
 @media (min-width: 992px) {
-	.album {
-		margin-right: 30px;
-		margin-bottom: 35px;
-	}
 	
 }
 /* Large desktops and up */
 @media (min-width: 1200px) {
+	.album {
+		margin-right: 30px;
+		margin-bottom: 35px;
+	}
 	
 }
 
