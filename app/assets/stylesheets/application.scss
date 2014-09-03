@@ -99,15 +99,8 @@ body {
 	color: white;
 	font-weight: 200;
 }
-/*
-.album .details .description-short {
-	display: block;
-}
-.album .details .description-long {
-	display: none;
-}
-*/
 
+/* iPad and up */
 @media (min-width: 768px) {
 	.photo-elem {
 		max-width: 100%;
@@ -115,15 +108,24 @@ body {
 	.album {
 		max-width: 240px;
 		max-height: 240px;
-		margin-right: 20px;
-		margin-bottom: 20px;
-	}
-	.album .details {
-
+		margin-right: 2px;
+		margin-bottom: 5px;
 	}
 	.album img {
 		max-height: 100%;
 	}
+}
+/* Medium desktops and up */
+@media (min-width: 992px) {
+	.album {
+		margin-right: 30px;
+		margin-bottom: 35px;
+	}
+	
+}
+/* Large desktops and up */
+@media (min-width: 1200px) {
+	
 }
 
 
