@@ -19,12 +19,19 @@
  *= require_self
  */
 
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
 .photo-container {
 
 }
 
 .photo-elem {
 	max-width: 140px;
+}
+.photo-elem img {
+	
 }
 
 .album {
@@ -38,10 +45,11 @@
 }
 .album img {
 	max-height: 140px;
-	
+	/*
 	-webkit-filter: grayscale(100%);
 	-moz-filter: grayscale(100%);
 	filter: grayscale(100%);
+	*/
 }
 
 .album .image {
@@ -57,18 +65,33 @@
 	display: block;
 	vertical-align: top;
 	position: absolute;
-	z-index: 100;
-	width: 100%;
-	height: 100%;
 	left: 0;
-	top: 0;
-	text-align: center;
-	color: white;
-	padding-top: 40%;
+	bottom: 0;
+	z-index: 100;
+	
+	width: 100%;
+	height: 75px;
 	padding-left: 5%;
 	padding-right: 5%;
-	background-color: rgba(0,0,0,0.4);
+	
+	text-align: left;
+	color: white;
+
+	
+	background: black;
+	background: rgba(0,0,0,0.6);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(100%, rgba(0,0,0,0.6)));
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.6)));
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%);	
+	
 	font-weight: 200;
+}
+
+.album .details h4 {
+	position: absolute;
+	top: 38px;
+	left: 10px;
 }
 
 .album .details a {
@@ -79,12 +102,12 @@
 .album .details .description-short {
 	display: block;
 }
-*/
 .album .details .description-long {
 	display: none;
 }
+*/
 
-@media (min-width: 500px) {
+@media (min-width: 768px) {
 	.photo-elem {
 		max-width: 100%;
 	}
@@ -95,43 +118,10 @@
 		margin-bottom: 20px;
 	}
 	.album .details {
-		padding-top:30%;
-	}
-	/*
-	.album .details .description-short {
-		display: none;
-	}
-	*/
-	.album .details .description-long {
-		display: block;
+
 	}
 	.album img {
-		max-height: 240px;
-	}
-}
-@media (min-width: 800px) {
-	.photo-elem {
-		max-width: 100%;
-	}
-	.album {
-		max-width: 240px;
-		max-height: 240px;
-		margin-right: 20px;
-		margin-bottom: 20px;
-	}
-	.album .details {
-		padding-top:30%;
-	}
-	/*
-	.album .details .description-short {
-		display: none;
-	}
-	*/
-	.album .details .description-long {
-		display: block;
-	}
-	.album img {
-		max-width: 100%;
+		max-height: 100%;
 	}
 }
 
