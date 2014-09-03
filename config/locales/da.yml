@@ -21,7 +21,7 @@
 da:	
   login: "Log ind"
   logout: "Log ud"
-  login_explanation: "Log ind for at se og uploade billeder fra brylluppet. Hvis du har en Facebook eller Google konto kan du logge ind med den, og ellers kan du oprette dig nedenfor."
+  login_explanation: "Log ind for at se og uploade billeder fra brylluppet. Hvis du har en Facebook eller Google konto kan du logge ind med den (det er lettest), og ellers kan du oprette dig nedenfor."
   login_with_google: "Log ind med Google"
   login_with_facebook: "Log ind med Facebook"
   login_dont_have_fb_or_g: "Har du ikke Facebook eller Google login?"

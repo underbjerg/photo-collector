@@ -21,7 +21,7 @@
 en:
  login: "Login"
  logout: "Logout"
- login_explanation: "Login to view or upload photos. You can login with an existing Google or Facebook account, or create an account below"
+ login_explanation: "Login to view or upload photos. You can login with an existing Google or Facebook account (that's the easiest), or create an account below"
  login_with_google: "Login with Google"
  login_with_facebook: "Login with Facebook"
  login_dont_have_fb_or_g: "Don't have a Facebook or Google account?"

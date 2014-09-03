@@ -21,7 +21,7 @@
 sv:	
   login: "Logga in"
   logout: "Logga ut"
-  login_explanation: "Logga in för att se och ladda upp bilder från brölloppet. Om du har Facebook eller Google-konto kan du logga in med dem, annars kan du skapa ett användarnamn."
+  login_explanation: "Logga in för att se och ladda upp bilder från brölloppet. Om du har Facebook eller Google-konto kan du logga in med dem (det är det enklaste), annars kan du skapa ett användarnamn."
   login_with_google: "Logga in med Google"
   login_with_facebook: "Logga in med Facebook"
   login_dont_have_fb_or_g: "Har du inte Facebook eller Google login?"
