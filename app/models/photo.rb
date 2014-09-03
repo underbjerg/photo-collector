@@ -18,6 +18,25 @@ class Photo < ActiveRecord::Base
         Resque.enqueue(ImageFileProcessor, id, key, attributes)
       end
     end
+    
+    def re_process_image_file(options = {})
+      if options[:now]
+        puts "Asked to re-generate versions for photo " + id.to_s
+        
+      	begin
+      		image_file.cache_stored_file!
+      		image_file.retrieve_from_cache!(image_file.cache_name)
+      		image_file.recreate_versions!
+      		save!
+      	rescue => e
+      		puts  "ERROR: Photo: #{id} -> #{e.to_s}"
+      	end
+        
+        puts "Done re-generating versions for photos " + id.to_s
+      else
+        Resque.enqueue(ImageRegenerateFileProcessor, id)
+      end
+    end
 
   private
   
@@ -33,5 +52,15 @@ class ImageFileProcessor
     photo.album_id = attributes["album_id"]
     photo.user_id = attributes["user_id"]
     photo.save_and_process_image_file(:now => true)
+  end
+end
+
+
+class ImageRegenerateFileProcessor
+  @queue = :image_file_processor_queue
+
+  def self.perform(id)
+    photo = Photo.find(id)
+    photo.re_process_image_file(:now => true)
   end
 end

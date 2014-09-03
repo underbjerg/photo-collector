@@ -59,7 +59,7 @@ class FileUploader < CarrierWave::Uploader::Base
   #  end
   #end
   version :thumb_square, :from_version => :single do
-    process :resize_to_fill => [240, 240]
+    process :resize_to_fill => [480, 480]
     process :quality => 75
     def store_dir
       "uploads/thumbs/#{model.album.path}/#{model.user.email.parameterize}"
@@ -85,7 +85,7 @@ class FileUploader < CarrierWave::Uploader::Base
       path = file.file
       puts "Loading MiniExiftool for " + path
       photo = MiniExiftool.new(path)
-      puts "Description: " + photo.ImageDescription.to_s
+      #puts "Description: " + photo.ImageDescription.to_s
       puts "Capture time: " + photo.DateTimeOriginal.to_s
       model.longitude = photo.GPSLongitude if model.longitude.nil?
       model.latitude = photo.GPSLatitude if model.latitude.nil?

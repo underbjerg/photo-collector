@@ -20,4 +20,10 @@ class Album < ActiveRecord::Base
     photos_unordered.order("use_as_cover DESC, capture_time ASC").first
   end
   
+  def regenerate_thumbnails
+    self.photos.each do |photo|
+      photo.re_process_image_file
+    end
+  end
+  
 end

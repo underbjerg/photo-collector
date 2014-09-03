@@ -112,6 +112,9 @@ body {
 	.album img {
 		max-height: 100%;
 	}
+	.photo-elem {
+		max-width: 240px;
+	}
 }
 /* Medium desktops and up */
 @media (min-width: 992px) {

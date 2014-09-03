@@ -36,6 +36,11 @@ class AlbumsController < ApplicationController
     @s3_direct_post = S3_BUCKET.presigned_post(key: nil, success_action_status: 201, acl: :public_read).where(:key).starts_with(@s3_path)
   end  
   
+  def regenerate_thumbnails
+    @album = Album.find( params[:album_id])
+    @album.regenerate_thumbnails
+  end
+  
   # POST /albums
   # POST /albums.json
   def create

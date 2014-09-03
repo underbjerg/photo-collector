@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     
   resources :albums do
     get :upload
-    get :upload2
+    get :regenerate_thumbnails
     resources :photos
   end
   
