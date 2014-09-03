@@ -102,18 +102,12 @@ body {
 
 /* iPad and up */
 @media (min-width: 768px) {
-	.photo-elem {
-		max-width: 100%;
-	}
-	.album {
+	.album, .photo-elem {
 		max-width: 240px;
 		max-height: 240px;
 	}
 	.album img {
 		max-height: 100%;
-	}
-	.photo-elem {
-		max-width: 240px;
 	}
 }
 /* Medium desktops and up */
@@ -122,6 +116,10 @@ body {
 }
 /* Large desktops and up */
 @media (min-width: 1200px) {
+	.album, .photo-elem {
+		max-width: 290px;
+		max-height: 290px;
+	}
 	.album {
 		margin-right: 30px;
 		margin-bottom: 35px;
