@@ -17,6 +17,13 @@
 <% content_for :javascript do %>
 <script type="text/javascript">
 	$(document).ready(initializeLightbox);
-	$(document).on("page:load", initializeLightbox);
+	
+	$('#photo-container').imagesLoaded()
+	  .progress( function( instance, image ) {
+	    var result = image.isLoaded ? 'loaded' : 'broken';
+  	    //console.log( 'image is ' + result + ' for ' + image.img.src + ' with class ' + image.img.className );
+		image.img.className = image.img.className + " fadeIn";
+	  });
+	
 </script>
 <% end %>
