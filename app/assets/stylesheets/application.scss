@@ -30,8 +30,37 @@ body {
 .photo-elem {
 	max-width: 140px;
 }
-.photo-elem img {
-	
+
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-o-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.photo-elem img, .album img {
+	/* Hide images by default. Fade in via imageLoaded and CSS3 animation (doesn't work in IE 8 + 9) */
+	opacity: 0;
+}
+
+/* CSS3 animation to fade in image. fadeIn class applied in javascript when images has loaded
+	Doesn't work in IE < 10
+ */
+.fadeIn, .photo-elem img.fadeIn, .album img.fadeIn {
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  -o-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;	  
+  
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  -o-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+		  
+  -webkit-animation-duration:0.5s;
+  -moz-animation-duration:0.5s;
+  -o-animation-duration:0.5s;
+  animation-duration:0.5s;			  
+
+  opacity: 1; 
 }
 
 .album {
@@ -44,7 +73,8 @@ body {
 	position: relative;
 }
 .album img {
-	max-height: 140px;
+	height: 140px;
+	width: 140px;
 	/*
 	-webkit-filter: grayscale(100%);
 	-moz-filter: grayscale(100%);
@@ -106,8 +136,9 @@ body {
 		max-width: 240px;
 		max-height: 240px;
 	}
-	.album img {
-		max-height: 100%;
+	.album img, .photo-elem img {
+		height: 240px;
+		width: 240px;
 	}
 }
 /* Medium desktops and up */
@@ -119,6 +150,10 @@ body {
 	.album, .photo-elem {
 		max-width: 290px;
 		max-height: 290px;
+	}
+	.album img, .photo-elem img {
+		height: 290px;
+		width: 290px;
 	}
 	.album {
 		margin-right: 15px;

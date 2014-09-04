@@ -41,5 +41,6 @@
 //  require facebook
 
 //= require magnific-popup
+//= require imagesloaded.pkgd.min.js
 
 //= require lightbox

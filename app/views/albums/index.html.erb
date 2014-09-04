@@ -16,6 +16,7 @@
 </div>
 
 
+<div id="album-container">
     <% @albums.each do |album| %>
 	
 		<div class="album">
@@ -37,3 +38,17 @@
 		</div>	
 		
     <% end %>
+</div>
+
+
+<% content_for :javascript do %>
+<script type="text/javascript">
+	
+	$('#album-container').imagesLoaded()
+	  .progress( function( instance, image ) {
+	    var result = image.isLoaded ? 'loaded' : 'broken';
+  	    //console.log( 'image is ' + result + ' for ' + image.img.src + ' with class ' + image.img.className );
+		image.img.className = image.img.className + " fadeIn";
+	  });
+</script>
+<% end %>
