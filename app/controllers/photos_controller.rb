@@ -39,8 +39,9 @@ class PhotosController < ApplicationController
 
     #respond_to do |format|
       if @photo.save_and_process_image_file
-        puts "User being created"
-        redirect_to :action => :index
+        render :nothing => true, status: :created
+        
+        #redirect_to :action => :index
         #format.html { render :text => "FILEID:" + @photo.image_file.thumb.url }
         #format.xml  { render :nothing => true }
       else
