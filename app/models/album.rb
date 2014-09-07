@@ -1,5 +1,5 @@
 class Album < ActiveRecord::Base
-  has_many :photos, -> { order 'capture_time ASC' }, :dependent => :delete_all
+  has_many :photos, -> { order 'capture_time ASC, title ASC' }, :dependent => :delete_all
   has_many :photos_unordered, :class_name => 'Photo'
   has_many :users, -> { uniq }, through: :photos_unordered
   
