@@ -51,13 +51,13 @@ class FileUploader < CarrierWave::Uploader::Base
       "uploads/thumbs/#{model.album.path}/#{model.user.email.parameterize}"
     end
   end
-  #version :thumb, :from_version => :single do
-  #  process :resize_to_fit => [240, 240]
-  #  process :quality => 75
-  #  def store_dir
-  #    "uploads/thumbs/#{model.album.path}/#{model.user.email.parameterize}"
-  #  end
-  #end
+  version :thumb, :from_version => :single do
+    process :resize_to_fit => [720, 480]
+    process :quality => 75
+    def store_dir
+      "uploads/thumbs/#{model.album.path}/#{model.user.email.parameterize}"
+    end
+  end
   version :thumb_square, :from_version => :single do
     process :resize_to_fill => [480, 480]
     process :quality => 75

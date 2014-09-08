@@ -46,7 +46,7 @@ class ImageFileProcessor
   @queue = :image_file_processor_queue
 
   def self.perform(id, key, attributes)
-    puts "Photo.perform(attributes) called. Attempting to create new photo with attributes: " + attributes.to_s
+    #puts "Photo.perform(attributes) called. Attempting to create new photo with attributes: " + attributes.to_s
     photo = Photo.find(id)
     photo.key = key
     photo.album_id = attributes["album_id"]

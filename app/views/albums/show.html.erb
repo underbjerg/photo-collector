@@ -56,26 +56,26 @@
 
 
 <div id="photo-container">
-	<% for photo in @photos do  %>
-		<div class="photo-elem">
-			<% if photo.image_processed && photo.image_file.thumb_square && photo.image_file.single %>
-				<%= link_to image_tag( photo.image_file.thumb_square.url, :class => "img-responsive" ), [photo.album,photo], "data-mfp-src" => photo.image_file.single.url, :title => photo.title, :class => "view", "data-capture-time" => ( photo.capture_time.blank? ? '' : photo.capture_time.strftime("%b %d %Y, %H:%M")  ), "data-user" => (photo.user ? photo.user.name : ""), "data-fullsize" => photo.image_file.file.url %>
-			<% else %>
-				<%= link_to image_tag("processing.jpg", :class => "img-responsive img-rounded"), @album %>
-			<% end %>
-		</div>
-	<% end %>
+<% for photo in @photos do  -%><%= render partial: "photos/photo", object: photo %><% end -%>
 </div>
 
 <% content_for :javascript do %>
 <script type="text/javascript">
-	$(document).ready(initializeLightbox);
+	$(document).ready( function() {
+		initializeLightbox();
+	  	resizePhotos();
+	});
 	
+	$(window).resize(function () {
+		resizePhotos();
+	});
+  
 	$('#photo-container').imagesLoaded()
 	  .progress( function( instance, image ) {
 	    var result = image.isLoaded ? 'loaded' : 'broken';
   	    //console.log( 'image is ' + result + ' for ' + image.img.src + ' with class ' + image.img.className );
 		image.img.className = image.img.className + " fadeIn";
 	  });
+	  
 </script>
 <% end %>

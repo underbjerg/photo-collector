@@ -16,7 +16,15 @@
 
 <% content_for :javascript do %>
 <script type="text/javascript">
-	$(document).ready(initializeLightbox);
+	$(document).ready(function() {
+		initializeLightbox();
+		resizePhotos();
+	});
+
+
+	$(window).resize(function () {
+		resizePhotos();
+	});
 	
 	$('#photo-container').imagesLoaded()
 	  .progress( function( instance, image ) {

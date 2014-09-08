@@ -27,7 +27,7 @@ class PhotosController < ApplicationController
   # POST /photos.json
   def create
     @album = Album.find(params[:album_id])
-    puts "Album ID: " + @album.id.to_s
+    #puts "Album ID: " + @album.id.to_s
     @photo = Photo.new(photo_params)
     @photo.user = current_user
     
