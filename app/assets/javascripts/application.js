@@ -58,6 +58,9 @@ function getDimensions() {
 	console.log("Container width: " + viewport_width);
 	
 	ideal_height = parseInt($(window).height() / 2);
+	if(ideal_height > 480) {
+		ideal_height = 480; // cap images to 480px in height
+	}
 }
 	
 function partition(imageElements) {
