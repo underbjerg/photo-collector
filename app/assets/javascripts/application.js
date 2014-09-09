@@ -45,5 +45,7 @@
 
 //= require lightbox
 
+//= require jquery.lazyload.min.js
+
 //= require imageLayouter
 

@@ -17,15 +17,14 @@
 
 	$(document).ready(function() {
 		initializeLightbox();
+		
 		$("#photo-container").initializeImageLayouter(".photo-elem img");
+		
+	    $("img.lazy").lazyload({
+			effect : "fadeIn",
+		    threshold : 700
+		});
 	});
 
-	$('#photo-container').imagesLoaded()
-	  .progress( function( instance, image ) {
-	    var result = image.isLoaded ? 'loaded' : 'broken';
-  	    //console.log( 'image is ' + result + ' for ' + image.img.src + ' with class ' + image.img.className );
-		image.img.className = image.img.className + " fadeIn";
-	  });
-	
 </script>
 <% end %>

@@ -165,7 +165,7 @@ body {
 @-o-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
-.photo-elem img, .album img {
+.album img {
 	/* Hide images by default. Fade in via imageLoaded and CSS3 animation (doesn't work in IE 8 + 9) */
 	opacity: 0;
 }
@@ -173,7 +173,7 @@ body {
 /* CSS3 animation to fade in image. fadeIn class applied in javascript when images has loaded
 	Doesn't work in IE < 10
  */
-.fadeIn, .photo-elem img.fadeIn, .album img.fadeIn {
+.album img.fadeIn {
   -webkit-animation:fadeIn ease-in 1;
   -moz-animation:fadeIn ease-in 1;
   -o-animation:fadeIn ease-in 1;
