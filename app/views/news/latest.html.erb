@@ -5,9 +5,7 @@
 	<% for segment in @feed do  %>
 		<p class="lead"><%= segment[:date].to_s if segment[:date] %>: <%= segment[:user].name if segment[:user] %> tilføjede <%= segment[:photos].size %> billeder til <%= link_to segment[:album].title, segment[:album] if segment[:album] %></p>
 	
-		<% for photo in segment[:photos] do %>
-			<%= render partial: "photos/photo", object: photo %>
-		<% end %>
+		<% for photo in segment[:photos] do -%><%= render partial: "photos/photo", object: photo %><% end -%>
 		
 		<p class="lead">&nbsp;</p>
 		
@@ -16,16 +14,12 @@
 
 <% content_for :javascript do %>
 <script type="text/javascript">
+
 	$(document).ready(function() {
 		initializeLightbox();
-		resizePhotos();
+		$("#photo-container").initializeImageLayouter(".photo-elem img");
 	});
 
-
-	$(window).resize(function () {
-		resizePhotos();
-	});
-	
 	$('#photo-container').imagesLoaded()
 	  .progress( function( instance, image ) {
 	    var result = image.isLoaded ? 'loaded' : 'broken';

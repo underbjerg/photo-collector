@@ -63,13 +63,9 @@
 <script type="text/javascript">
 	$(document).ready( function() {
 		initializeLightbox();
-	  	resizePhotos();
+		$("#photo-container").initializeImageLayouter(".photo-elem img");
 	});
 	
-	$(window).resize(function () {
-		resizePhotos();
-	});
-  
 	$('#photo-container').imagesLoaded()
 	  .progress( function( instance, image ) {
 	    var result = image.isLoaded ? 'loaded' : 'broken';
