@@ -17,7 +17,7 @@
 	function getDimensions() {
 		//viewport_width = $(window).width() - 60;
 		viewport_width = container.width();
-		console.log("Container width: " + viewport_width);
+		//console.log("Container width: " + viewport_width);
 	
 		ideal_height = parseInt($(window).height() * 4 / 7);
 		if(ideal_height > 480) {
@@ -70,9 +70,9 @@
 	
 		// resize elements
 		$.each(row, function(key, cell){
-			var new_width = Math.floor(cell["ideal_width"] * shrink_ratio);
+			var new_width = Math.round(cell["ideal_width"] * shrink_ratio);
 			
-			// Due to rounding, the new width of the row may overflow by a couple of pixels. If that happens, shrink the last photo a couple of pixels
+			// Due to rounding, the new width of the row may overflow by a couple of pixels. If that happens, shrink the last photo a couple of pixels in width
 			overflow = result_row_width + new_width + photo_margin - viewport_width; 
 			if(overflow > 0) {
 				new_width -= overflow;
