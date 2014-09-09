@@ -12,7 +12,7 @@
 	var imgSelector;
 	var viewport_width;
 	var ideal_height;
-	var photo_margin = 6;
+	var photo_margin = 7;
 	
 	function getDimensions() {
 		//viewport_width = $(window).width() - 60;
