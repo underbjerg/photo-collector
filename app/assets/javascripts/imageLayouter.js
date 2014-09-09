@@ -12,7 +12,7 @@
 	var imgSelector;
 	var viewport_width;
 	var ideal_height;
-	var photo_margin = 7;
+	var photo_margin = 3;
 	
 	function getDimensions() {
 		//viewport_width = $(window).width() - 60;
@@ -56,6 +56,8 @@
 
 	function resizeRow(row) {
 		var ideal_row_width = 0;
+		var result_row_width = 0;
+		var overflow = 0;
 		$.each(row, function(key, cell){
 			ideal_row_width += cell["ideal_width"] + photo_margin;
 		});
@@ -63,14 +65,26 @@
 		//console.log("Row is " + ideal_row_width + " wide, but viewport is only " + viewport_width);
 	
 		var shrink_ratio = viewport_width / ideal_row_width;
+		//console.log("Shrinking row from " + ideal_row_width + " to " + viewport_width + " with ratio " + shrink_ratio);
 		var new_height = Math.floor(ideal_height * shrink_ratio);
 	
 		// resize elements
 		$.each(row, function(key, cell){
 			var new_width = Math.floor(cell["ideal_width"] * shrink_ratio);
+			
+			// Due to rounding, the new width of the row may overflow by a couple of pixels. If that happens, shrink the last photo a couple of pixels
+			overflow = result_row_width + new_width + photo_margin - viewport_width; 
+			if(overflow > 0) {
+				new_width -= overflow;
+			}
 			cell["element"].width = new_width;
 			cell["element"].height = new_height;
+			$(cell["element"]).css("margin-right", photo_margin);
+			$(cell["element"]).css("margin-bottom", photo_margin);
+			result_row_width += new_width + photo_margin;
 		});
+		
+		//console.log("Resized row from " + ideal_row_width + " to " + result_row_width + " to fit container of " + viewport_width + ". Overflow: " + overflow);
 	};
 
 	function resizePhotos() {
