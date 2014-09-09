@@ -19,6 +19,10 @@ class Photo < ActiveRecord::Base
       end
     end
     
+    def aspect_ratio
+      width && height ? 100 * width / height : 1
+    end
+    
     def re_process_image_file(options = {})
       if options[:now]
         puts "Asked to re-generate versions for photo " + id.to_s

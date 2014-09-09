@@ -27,14 +27,14 @@
 					<%= link_to( image_tag("placeholder.jpg", :class => "img-responsive "), album, :class => "pull-left") %>
 				<% end -%>
 		  </div>
-			  <%= link_to(album) do %>
+			  <%= link_to(album) do -%>
 		  <div class="details">
 				<h4 class="media-heading"><%= album.title %></h4>
 				<!--
 				<p class="description-long" style=""><%= truncate album.description, :length => 120, :seperator => ' ' %></p>
 					-->
 		  </div>
-			  <% end %>
+			  <% end -%>
 		</div>	
 		
     <% end %>
