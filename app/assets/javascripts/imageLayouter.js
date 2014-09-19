@@ -1,8 +1,7 @@
 // Author: Erik L. Underbjerg (erik@underbjerg.com)
 // Small jQuery plugin for layouting a bunch of images to both fill and fit the width of the container,
 // and preserve the aspect ratio of all the images
-// The image elements must have an 'aspect-ratio' attribute, which should be equal to (width * 100 / height) of the image
-// 
+// The image elements must have both a 'data-width' and 'data-height' attribute, which should be the original dimensions of the image
 // Usage: $("#container-selector").initializeImageLayouter("img.element-selector");
 
 
@@ -32,7 +31,9 @@
 		var row_width = 0;
 	
 		$.each(imageElements, function(key, value) {
-			var aspect = $(value).data('aspect-ratio');
+			var orig_width = $(value).data('width');
+			var orig_height = $(value).data('height');
+			var aspect = orig_width * 100 / orig_height;
 			var ideal_width = Math.floor((ideal_height*aspect)/100);
 			//console.log("element " + key + " with aspect ratio " + aspect + " has ideal height " + ideal_height + " and ideal width " + ideal_width);
 		
@@ -79,6 +80,8 @@
 			}
 			cell["element"].width = new_width;
 			cell["element"].height = new_height;
+			$(cell["element"]).css("width", new_width);
+			$(cell["element"]).css("height", new_height);
 			$(cell["element"]).css("margin-right", photo_margin);
 			$(cell["element"]).css("margin-bottom", photo_margin);
 			result_row_width += new_width + photo_margin;

@@ -17,32 +17,14 @@
 
 
 <div id="album-container">
-    <% @albums.each do |album| %>
-	
-		<div class="album">
-			<div class="image">
-				<% unless album.photos.empty? -%>
-					<%= link_to( image_tag( album.cover_photo.image_file.thumb_square.url, :class => "img-responsive" ), album) %>
-				<% else -%>
-					<%= link_to( image_tag("placeholder.jpg", :class => "img-responsive "), album, :class => "pull-left") %>
-				<% end -%>
-		  </div>
-			  <%= link_to(album) do -%>
-		  <div class="details">
-				<h4 class="media-heading"><%= album.title %></h4>
-				<!--
-				<p class="description-long" style=""><%= truncate album.description, :length => 120, :seperator => ' ' %></p>
-					-->
-		  </div>
-			  <% end -%>
-		</div>	
-		
-    <% end %>
+<%- @albums.each do |album| -%><div class="album" data-width="<%= album.photos.empty? ? "480" : album.cover_photo.width %>" data-height="<%= album.photos.empty? ? "480" : album.cover_photo.height %>"><div class="image"><%- unless album.photos.empty? -%><%= link_to( image_tag( album.cover_photo.image_file.thumb.url, :class => ""), album) %><% else -%><%= link_to( image_tag("placeholder.jpg", :class => "img-responsive "), album, :class => "pull-left") %><%- end -%></div><%= link_to(album) do -%><div class="details"><h4 class="media-heading"><%= album.title %></h4></div><% end -%></div><%- end -%>
 </div>
 
 
 <% content_for :javascript do %>
 <script type="text/javascript">
+
+	$("#album-container").initializeImageLayouter(".album");
 	
 	$('#album-container').imagesLoaded()
 	  .progress( function( instance, image ) {
